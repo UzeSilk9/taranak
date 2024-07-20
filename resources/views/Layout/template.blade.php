@@ -22,30 +22,35 @@
     <div class="min-h-screen flex flex-col">
         <!--Header Section Starts Here-->
         <header class="bg-nav">
-            <div class="flex justify-between">
-                <div class="p-1 mx-3 inline-flex items-center">
-                    <svg onclick="sidebarToggle()" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-                    </svg>
-                    <h1 class="text-white p-2">Logo</h1>
-                </div>
-                <div class="p-1 flex flex-row items-center">
-                    <a href="https://github.com/tailwindadmin/admin" class="text-white p-2 mr-2 no-underline hidden md:block lg:block">Github</a>
-
-
-                    <img onclick="profileToggle()" class="inline-block h-8 w-8 rounded-full" src="https://avatars0.githubusercontent.com/u/4323180?s=460&v=4" alt="">
-                    <a href="#" onclick="profileToggle()" class="text-white p-2 no-underline hidden md:block lg:block">Taranak</a>
-                    <div id="ProfileDropDown" class="rounded hidden shadow-md bg-white absolute pin-t mt-12 mr-1 pin-r">
-                        <ul class="list-reset">
-                          <li><a href="#" class="no-underline px-4 py-2 block text-black hover:bg-grey-light">My account</a></li>
-                          <li><a href="#" class="no-underline px-4 py-2 block text-black hover:bg-grey-light">Notifications</a></li>
-                          <li><hr class="border-t mx-2 border-grey-ligght"></li>
-                          <li><a href="#" class="no-underline px-4 py-2 block text-black hover:bg-grey-light">Logout</a></li>
-                        </ul>
-                    </div>
-                </div>
+    <div class="flex justify-between">
+        <div class="p-1 mx-3 inline-flex items-center">
+            <svg id="sidebarToggleBtn" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-white cursor-pointer" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+            </svg>
+            <h1 class="text-white p-2">Logo</h1>
+        </div>
+        <div class="p-1 flex flex-row items-center">
+            <a href="https://github.com/tailwindadmin/admin" class="text-white p-2 mr-2 no-underline hidden sm:block">Github</a>
+            <img id="profileToggleBtn" class="inline-block h-8 w-8 rounded-full cursor-pointer" src="https://avatars0.githubusercontent.com/u/4323180?s=460&v=4" alt="">
+            <a href="#" id="profileToggleBtnText" class="text-white p-2 no-underline hidden sm:block cursor-pointer">Taranak</a>
+            <div id="ProfileDropDown" class="rounded hidden shadow-md bg-white absolute mt-12 right-0">
+                <ul class="list-reset">
+                    <li><a href="#" class="no-underline px-4 py-2 block text-black hover:bg-grey-light">Akun Saya</a></li>
+                    <li><a href="#" class="no-underline px-4 py-2 block text-black hover:bg-grey-light">Notifikasi</a></li>
+                    <li><hr class="border-t mx-2 border-grey-light"></li>
+                    <li><a href="{{ route('logout') }}" class="no-underline px-4 py-2 block text-black hover:bg-grey-light">Keluar</a></li>
+                </ul>
             </div>
-        </header>
+        </div>
+    </div>
+</header>
+
+<!-- Tambahkan sidebar untuk contoh -->
+<div id="sidebar" class="hidden bg-gray-800 text-white w-64 h-full fixed inset-y-0 left-0 transform -translate-x-full transition-transform duration-200">
+    <!-- Isi sidebar -->
+</div>
+
+        
         <!--/Header-->
 
         <div class="flex flex-1">
@@ -79,7 +84,7 @@
                                 aria-label="submenu"
                             >
                                 <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-                                    <a href="login.html" class="mx-4 font-sans font-hairline hover:font-normal text-sm text-nav-item no-underline">
+                                    <a href="{{ route('hewan') }}" class="mx-4 font-sans font-hairline hover:font-normal text-sm text-nav-item no-underline">
                                         Data Hewan
                                         <span><i class="fa fa-angle-right float-right"></i></span>
                                     </a>
@@ -128,10 +133,9 @@
                     </li>
                 </ul>
             </aside>
-        
             <!--/Sidebar-->
             
-    @yield('content')    
+            @yield('content')    
 
         </div>
         <!--Footer-->
@@ -152,7 +156,7 @@
 </div>
 
 </div>
-<script src="{{ asset('main.js')}}"></script>
+<script src="main.js"></script>
 </body>
 
 </html>

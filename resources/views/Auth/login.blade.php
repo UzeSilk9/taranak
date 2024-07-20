@@ -14,7 +14,7 @@ Login Admin Taranak-laravel
           <p class="text-gray-800 text-center text-lg font-bold">Login</p>
           <div class="">
             <label class="block text-sm text-gray-00" for="username">Username</label>
-            <input class="w-full px-5 py-1 text-gray-700 bg-gray-200 rounded" id="username" name="username" type="username" required="" placeholder="username" aria-label="username">
+            <input class="w-full px-5 py-1 text-gray-700 bg-gray-200 rounded" id="username" name="username" type="use``rname" required="" placeholder="username" aria-label="username">
           </div>
           <div class="mt-2">
             <label class="block text-sm text-gray-600" for="password">Password</label>

@@ -1,48 +1,42 @@
 document.addEventListener('DOMContentLoaded', function() {
-    var sidebar = document.getElementById('sidebar');
-    var profileDropdown = document.getElementById('ProfileDropDown');
+    const sidebarToggleBtn = document.getElementById('sidebarToggleBtn');
+    const sidebar = document.getElementById('sidebar');
+    const profileToggleBtn = document.getElementById('profileToggleBtn');
+    const profileToggleBtnText = document.getElementById('profileToggleBtnText');
+    const profileDropDown = document.getElementById('ProfileDropDown');
 
-    function sidebarToggle() {
-        if (sidebar.style.display === "none" || sidebar.style.display === "") {
-            sidebar.style.display = "block";
-        } else {
-            sidebar.style.display = "none";
+    // Fungsi untuk toggle visibilitas sidebar
+    function toggleSidebar() {
+        if (sidebar) {
+            sidebar.classList.toggle('-translate-x-full');
+            sidebar.classList.toggle('translate-x-0');
         }
     }
 
-    function profileToggle() {
-        if (profileDropdown.style.display === "none" || profileDropdown.style.display === "") {
-            profileDropdown.style.display = "block";
-        } else {
-            profileDropdown.style.display = "none";
+    // Fungsi untuk toggle visibilitas dropdown profil
+    function toggleProfileDropdown() {
+        if (profileDropDown) {
+            profileDropDown.classList.toggle('hidden');
         }
     }
 
-    document.getElementById('sidebarToggleBtn').addEventListener('click', sidebarToggle);
-    document.getElementById('profileToggleBtn').addEventListener('click', profileToggle);
-
-    /**
-     * ### Modals ###
-     */
-    function toggleModal(action, elem_trigger) {
-        elem_trigger.addEventListener('click', function() {
-            if (action === 'add') {
-                let modal_id = this.dataset.modal;
-                document.getElementById(`${modal_id}`).classList.add('modal-is-open');
-            } else {
-                let modal_id = elem_trigger.closest('.modal-wrapper').getAttribute('id');
-                document.getElementById(`${modal_id}`).classList.remove('modal-is-open');
-            }
-        });
+    // Pastikan sidebarToggleBtn dan sidebar telah didefinisikan
+    if (sidebarToggleBtn && sidebar) {
+        sidebarToggleBtn.addEventListener('click', toggleSidebar);
     }
 
-    if (document.querySelector('.modal-wrapper')) {
-        document.querySelectorAll('.modal-trigger').forEach(btn => {
-            toggleModal('add', btn);
-        });
-
-        document.querySelectorAll('.close-modal').forEach(btn => {
-            toggleModal('remove', btn);
-        });
+    // Pastikan profileToggleBtn dan profileToggleBtnText telah didefinisikan
+    if (profileToggleBtn && profileToggleBtnText) {
+        profileToggleBtn.addEventListener('click', toggleProfileDropdown);
+        profileToggleBtnText.addEventListener('click', toggleProfileDropdown);
     }
+
+    // Tutup dropdown ketika klik di luar elemen
+    window.addEventListener('click', function(e) {
+        if (!profileToggleBtn.contains(e.target) && 
+            !profileToggleBtnText.contains(e.target) && 
+            !profileDropDown.contains(e.target)) {
+            profileDropDown.classList.add('hidden');
+        }
+    });
 });

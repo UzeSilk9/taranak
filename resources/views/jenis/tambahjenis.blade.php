@@ -6,7 +6,7 @@
 
 @section('content')
 
-<form action="" method="post" enctype="multipart/form-data">
+<form action="{{ route('simpan') }}" method="post" enctype="multipart/form-data">
     @csrf
     <div class="flex flex-col gap-2">
         <label for="">Jenis Hewan</label>
@@ -15,8 +15,8 @@
     </div>
     <div class="flex flex-col gap-2">
         <label for="">Deskripsi</label>
-        <input type="text" name="desk" value="{{old('desk')}}" class="p-2 border rounded-md">
-        <span>{{$errors->first('desk')}}</span>
+        <input type="text" name="deskripsi" value="{{old('deskripsi')}}" class="p-2 border rounded-md">
+        <span>{{$errors->first('deskripsi')}}</span>
     </div>
     {{-- <div class="flex flex-col gap-2">
         <label for="">Telpon</label>
